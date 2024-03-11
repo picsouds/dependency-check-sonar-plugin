@@ -8,11 +8,11 @@
     </parent>
     <groupId>org.sonarsource.owasp</groupId>
     <artifactId>sonar-dependency-check</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.1</version>
     <packaging>pom</packaging>
     <name>Dependency-Check for SonarQube</name>
-    <description>Integrates Dependency-Check reports into SonarQube</description>
-    <inceptionYear>2015</inceptionYear>
+    <description>Integrates Dependency-Check 9.x reports into SonarQube</description>
+    <inceptionYear>2024</inceptionYear>
 
     <properties>
         <license.owner>dependency-check</license.owner>
@@ -52,10 +52,10 @@
     </developers>
 
     <scm>
-      <connection>scm:git:https://github.com/dependency-check/dependency-check-sonar-plugin</connection>
-      <developerConnection>scm:git:https://github.com/dependency-check/dependency-check-sonar-plugin</developerConnection>
-      <url>https://github.com/dependency-check/dependency-check-sonar-plugin</url>
-      <tag>3.1.0</tag>
+      <connection>scm:git:https://github.com/picsouds/dependency-check-sonar-plugin</connection>
+      <developerConnection>scm:git:https://github.com/picsouds/dependency-check-sonar-plugin</developerConnection>
+      <url>https://github.com/picsouds/dependency-check-sonar-plugin</url>
+      <tag>3.1.1</tag>
     </scm>
 
     <issueManagement>

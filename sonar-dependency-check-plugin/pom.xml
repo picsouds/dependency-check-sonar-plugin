@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.sonarsource.owasp</groupId>
         <artifactId>sonar-dependency-check</artifactId>
-        <version>3.1.0</version>
+        <version>3.1.1</version>
     </parent>
     <artifactId>sonar-dependency-check-plugin</artifactId>
     <packaging>sonar-plugin</packaging>
@@ -12,14 +12,14 @@
     <url>https://www.owasp.org/index.php/OWASP_Dependency_Check</url>
 
     <scm>
-        <connection>scm:git:https://github.com/dependency-check/dependency-check-sonar-plugin</connection>
-        <developerConnection>scm:git:https://github.com/dependency-check/dependency-check-sonar-plugin</developerConnection>
-        <url>https://github.com/dependency-check/dependency-check-sonar-plugin</url>
-        <tag>3.1.0</tag>
+        <connection>scm:git:https://github.com/picsouds/dependency-check-sonar-plugin</connection>
+        <developerConnection>scm:git:https://github.com/picsouds/dependency-check-sonar-plugin</developerConnection>
+        <url>https://github.com/picsouds/dependency-check-sonar-plugin</url>
+        <tag>3.1.1</tag>
     </scm>
 
     <properties>
-        <sonar.version>8.9.0.43852</sonar.version>
+        <sonar.version>8.9.1.44547</sonar.version>
         <!-- Configuration for sonar-packaging-maven-plugin -->
         <sonar.pluginClass>org.sonar.dependencycheck.DependencyCheckPlugin</sonar.pluginClass>
         <sonar.pluginName>Dependency-Check</sonar.pluginName>
