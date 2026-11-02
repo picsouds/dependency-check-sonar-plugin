@@ -119,6 +119,23 @@ class DependencyCheckUtilsTest {
         assertEquals(expectedSeverity, DependencyCheckUtils.cvssToSonarQubeSeverity(cvssSeverity, high, medium));
     }
 
+    public static Stream<Object[]> standardSeverities() {
+        return Stream.of(new Object[][]{
+                {Float.valueOf("10.0"), Float.valueOf("9.0"), Float.valueOf("7.0"), Float.valueOf("4.0"), Float.valueOf("0.0"), org.sonar.api.batch.rule.Severity.BLOCKER},
+                {Float.valueOf("7.0"),  Float.valueOf("9.0"), Float.valueOf("7.0"), Float.valueOf("4.0"), Float.valueOf("0.0"), org.sonar.api.batch.rule.Severity.CRITICAL},
+                {Float.valueOf("6.9"),  Float.valueOf("9.0"), Float.valueOf("7.0"), Float.valueOf("4.0"), Float.valueOf("0.0"), org.sonar.api.batch.rule.Severity.MAJOR},
+                {Float.valueOf("4.0"),  Float.valueOf("9.0"), Float.valueOf("7.0"), Float.valueOf("4.0"), Float.valueOf("0.0"), org.sonar.api.batch.rule.Severity.MAJOR},
+                {Float.valueOf("3.9"),  Float.valueOf("9.0"), Float.valueOf("7.0"), Float.valueOf("4.0"), Float.valueOf("0.0"), org.sonar.api.batch.rule.Severity.MINOR},
+                {Float.valueOf("0.0"),  Float.valueOf("9.0"), Float.valueOf("7.0"), Float.valueOf("4.0"), Float.valueOf("0.0"), org.sonar.api.batch.rule.Severity.MINOR},
+        });
+    }
+
+    @ParameterizedTest(name = "{index} => cvssSeverity={0}, blocker={1}, critical={2}, major={3}, minor={4}, expectedSeverity={5}")
+    @MethodSource("standardSeverities")
+    void testCvssToSonarQubeSeverity(Float cvssSeverity, Float blocker, Float critical, Float major, Float minor, org.sonar.api.batch.rule.Severity expectedSeverity) {
+        assertEquals(expectedSeverity, DependencyCheckUtils.cvssToStandardSeverity(cvssSeverity, blocker, critical, major, minor));
+    }
+
     public static Stream<Object[]> severitiesToScore() {
         return Stream.of(new Object[][]{
                 // defaults

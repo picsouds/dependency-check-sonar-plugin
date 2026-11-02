@@ -22,6 +22,10 @@ package org.sonar.dependencycheck.base;
 public final class DependencyCheckConstants {
 
     public static final String JSON_REPORT_PATH_PROPERTY = "sonar.dependencyCheck.jsonReportPath";
+    public static final String STANDARD_SEVERITY_BLOCKER = "sonar.dependencyCheck.standardSeverity.blocker";
+    public static final String STANDARD_SEVERITY_CRITICAL = "sonar.dependencyCheck.standardSeverity.critical";
+    public static final String STANDARD_SEVERITY_MAJOR = "sonar.dependencyCheck.standardSeverity.major";
+    public static final String STANDARD_SEVERITY_MINOR = "sonar.dependencyCheck.standardSeverity.minor";
     public static final String SEVERITY_HIGH = "sonar.dependencyCheck.severity.high";
     public static final String SEVERITY_MEDIUM = "sonar.dependencyCheck.severity.medium";
     public static final String SEVERITY_LOW = "sonar.dependencyCheck.severity.low";
@@ -39,6 +43,12 @@ public final class DependencyCheckConstants {
     public static final Float CVSS_MEDIUM_SCORE = 4.0f;
     public static final Float CVSS_LOW_SCORE = 0.1f;
 
+    // CVSS thresholds for the legacy severity (SonarQube "Standard Experience" mode)
+    public static final Float SEVERITY_BLOCKER_DEFAULT = 9.0f;
+    public static final Float SEVERITY_CRITICAL_DEFAULT = 7.0f;
+    public static final Float SEVERITY_MAJOR_DEFAULT = 4.0f;
+    public static final Float SEVERITY_MINOR_DEFAULT = 0.0f;
+
     public static final String JSON_REPORT_PATH_DEFAULT = "${WORKSPACE}/dependency-check-report.json";
     public static final Boolean SUMMARIZE_PROPERTY_DEFAULT = Boolean.FALSE;
     public static final Boolean SKIP_PROPERTY_DEFAULT = Boolean.FALSE;
@@ -50,6 +60,7 @@ public final class DependencyCheckConstants {
     public static final String RULE_KEY = "UsingComponentWithKnownVulnerability";
     public static final String RULE_KEY_WITH_SECURITY_HOTSPOT = "UsingComponentWithKnownVulnerabilitySecurityHotspot";
     public static final String SUB_CATEGORY_SEVERITIES = "Severities";
+    public static final String SUB_CATEGORY_STANDARD_SEVERITIES = "Standard Experience Severities";
     public static final String SUB_CATEGORY_PATHS = "Paths";
     public static final String SUB_CATEGORY_GENERAL = "General";
 
