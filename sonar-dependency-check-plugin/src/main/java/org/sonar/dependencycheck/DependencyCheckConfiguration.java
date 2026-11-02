@@ -109,6 +109,43 @@ public class DependencyCheckConfiguration {
                         .description("When enabled Filepath is used instead of Filename.")
                         .defaultValue(Boolean.toString(DependencyCheckConstants.USE_FILEPATH_DEFAULT))
                         .type(PropertyType.BOOLEAN)
+                        .build(),
+                //Standard Experience
+                PropertyDefinition.builder(DependencyCheckConstants.STANDARD_SEVERITY_BLOCKER)
+                        .onQualifiers(Qualifiers.PROJECT)
+                        .subCategory(DependencyCheckConstants.SUB_CATEGORY_STANDARD_SEVERITIES)
+                        .name("Blocker")
+                        .description("Minimum score for blocker issues or -1 to deactivate blocker issues.")
+                        .defaultValue(Float.toString(DependencyCheckConstants.SEVERITY_BLOCKER_DEFAULT))
+                        .type(PropertyType.FLOAT)
+                        .index(1)
+                        .build(),
+                PropertyDefinition.builder(DependencyCheckConstants.STANDARD_SEVERITY_CRITICAL)
+                        .onQualifiers(Qualifiers.PROJECT)
+                        .subCategory(DependencyCheckConstants.SUB_CATEGORY_STANDARD_SEVERITIES)
+                        .name("Critical")
+                        .description("Minimum score for critical issues or -1 to deactivate critical issues.")
+                        .defaultValue(Float.toString(DependencyCheckConstants.SEVERITY_CRITICAL_DEFAULT))
+                        .type(PropertyType.FLOAT)
+                        .index(2)
+                        .build(),
+                PropertyDefinition.builder(DependencyCheckConstants.STANDARD_SEVERITY_MAJOR)
+                        .onQualifiers(Qualifiers.PROJECT)
+                        .subCategory(DependencyCheckConstants.SUB_CATEGORY_STANDARD_SEVERITIES)
+                        .name("Major")
+                        .description("Minimum score for major issues or -1 to deactivate major issues.")
+                        .defaultValue(Float.toString(DependencyCheckConstants.SEVERITY_MAJOR_DEFAULT))
+                        .type(PropertyType.FLOAT)
+                        .index(3)
+                        .build(),
+                PropertyDefinition.builder(DependencyCheckConstants.STANDARD_SEVERITY_MINOR)
+                        .onQualifiers(Qualifiers.PROJECT)
+                        .subCategory(DependencyCheckConstants.SUB_CATEGORY_STANDARD_SEVERITIES)
+                        .name("Minor")
+                        .index(4)
+                        .description("Minimum score for minor issues or -1 to deactivate minor issues.")
+                        .defaultValue(Float.toString(DependencyCheckConstants.SEVERITY_MINOR_DEFAULT))
+                        .type(PropertyType.FLOAT)
                         .build()
         );
     }

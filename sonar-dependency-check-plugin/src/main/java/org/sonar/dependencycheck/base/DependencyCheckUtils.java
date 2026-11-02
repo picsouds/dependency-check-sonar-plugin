@@ -64,6 +64,33 @@ public final class DependencyCheckUtils {
         return DependencyCheckUtils.cvssToSonarQubeSeverity(cvssScore, severityHigh, severityMedium);
     }
 
+    public static org.sonar.api.batch.rule.Severity cvssToSonarQubeStandardSeverity(Float cvssScore, Configuration config) {
+        Float severityBlocker = config.getFloat(DependencyCheckConstants.STANDARD_SEVERITY_BLOCKER).orElse(DependencyCheckConstants.SEVERITY_BLOCKER_DEFAULT);
+        Float severityCritical = config.getFloat(DependencyCheckConstants.STANDARD_SEVERITY_CRITICAL).orElse(DependencyCheckConstants.SEVERITY_CRITICAL_DEFAULT);
+        Float severityMajor = config.getFloat(DependencyCheckConstants.STANDARD_SEVERITY_MAJOR).orElse(DependencyCheckConstants.SEVERITY_MAJOR_DEFAULT);
+        Float severityMinor = config.getFloat(DependencyCheckConstants.STANDARD_SEVERITY_MINOR).orElse(DependencyCheckConstants.SEVERITY_MINOR_DEFAULT);
+        return DependencyCheckUtils.cvssToStandardSeverity(cvssScore, severityBlocker, severityCritical, severityMajor, severityMinor);
+    }
+
+    /**
+     * Severity used by SonarQube in "Standard Experience" mode.
+     * CVSS &gt;= 9 : BLOCKER, &gt;= 7 : CRITICAL, &gt;= 4 : MAJOR, &gt;= 0 : MINOR otherwise INFO
+     */
+
+    public static org.sonar.api.batch.rule.Severity cvssToStandardSeverity(Float cvssScore, Float blocker, Float critical, Float major, Float minor) {
+        if (blocker >= 0 && cvssScore >= blocker.doubleValue()) {
+            return org.sonar.api.batch.rule.Severity.BLOCKER;
+        } else if (critical >= 0 && cvssScore >= critical) {
+            return org.sonar.api.batch.rule.Severity.CRITICAL;
+        } else if (major >= 0 && cvssScore >= major.floatValue()) {
+            return org.sonar.api.batch.rule.Severity.MAJOR;
+        } else if (minor >= 0 && cvssScore >= minor) {
+            return org.sonar.api.batch.rule.Severity.MINOR;
+        } else {
+            return org.sonar.api.batch.rule.Severity.INFO;
+        }
+    }
+
     public static String getRuleKey(Configuration config) {
         return config.getBoolean(DependencyCheckConstants.SECURITY_HOTSPOT)
                 .orElse(DependencyCheckConstants.SECURITY_HOTSPOT_DEFAULT)

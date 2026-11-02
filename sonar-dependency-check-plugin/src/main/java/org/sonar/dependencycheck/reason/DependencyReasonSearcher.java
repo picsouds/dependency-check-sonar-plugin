@@ -175,6 +175,7 @@ public class DependencyReasonSearcher {
 
     public void addIssueToProject(SensorContext context, Dependency dependency, Vulnerability vulnerability) {
         Severity severity = DependencyCheckUtils.cvssToSonarQubeSeverity(vulnerability.getCvssScore(), context.config());
+        org.sonar.api.batch.rule.Severity Standardseverity = DependencyCheckUtils.cvssToSonarQubeStandardSeverity(vulnerability.getCvssScore(), context.config());
         NewIssue sonarIssue = context.newIssue();
 
         NewIssueLocation location = sonarIssue.newLocation()
@@ -185,6 +186,7 @@ public class DependencyReasonSearcher {
             .at(location)
             .forRule(RuleKey.of(DependencyCheckConstants.REPOSITORY_KEY, DependencyCheckUtils.getRuleKey(context.config())))
             .overrideImpact(SoftwareQuality.SECURITY, severity)
+            .overrideSeverity(Standardseverity)
             .save();
         projectMetric.incrementCount(severity);
     }
@@ -194,6 +196,7 @@ public class DependencyReasonSearcher {
         List<Vulnerability> vulnerabilities = dependency.getVulnerabilities();
         Vulnerability highestVulnerability = vulnerabilities.get(0);
         Severity severity = DependencyCheckUtils.cvssToSonarQubeSeverity(highestVulnerability.getCvssScore(), context.config());
+        org.sonar.api.batch.rule.Severity Standardseverity = DependencyCheckUtils.cvssToSonarQubeStandardSeverity(highestVulnerability.getCvssScore(), context.config());
 
         NewIssue sonarIssue = context.newIssue();
 
@@ -205,6 +208,7 @@ public class DependencyReasonSearcher {
             .at(location)
             .forRule(RuleKey.of(DependencyCheckConstants.REPOSITORY_KEY, DependencyCheckUtils.getRuleKey(context.config())))
             .overrideImpact(SoftwareQuality.SECURITY, severity)
+            .overrideSeverity(Standardseverity)
             .save();
         projectMetric.incrementCount(severity);
     }
